@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>A Special Message</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #00d2ff;
@@ -30,6 +30,7 @@
             position: relative;
         }
 
+        /* ব্যাকগ্রাউন্ড এবং অ্যানিমেশন */
         .background-overlay {
             position: fixed;
             top: 0;
@@ -70,6 +71,7 @@
             50% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px white; }
         }
 
+        /* এনভেলপ স্টাইল */
         .envelope-wrapper {
             position: relative;
             cursor: pointer;
@@ -174,6 +176,7 @@
 
         @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
+        /* চিঠির কন্টেইনার */
         .letter-container {
             display: none;
             position: relative;
@@ -206,54 +209,70 @@
 
         .recipient {
             font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--primary-color);
             margin-bottom: 10px;
             letter-spacing: 1px;
             line-height: 1.4;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
         }
 
         .salutation {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--accent-gold);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             display: block;
         }
 
+        /* সুন্দর টেক্সট বডি */
         .message-body {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             text-align: justify;
             text-align-last: left;
+        }
+
+        /* হাইলাইট স্টাইল */
+        .text-gold {
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.2);
+        }
+        
+        .text-blue {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .text-bold {
+            color: #ffffff;
+            font-weight: 600;
         }
 
         @media (max-width: 480px) {
              .message-body {
                  font-size: 1rem;
-                 line-height: 1.6;
+                 line-height: 1.7;
              }
              .glass-paper {
                  padding: 30px 20px;
+                 margin-bottom: 50px;
              }
              .envelope-wrapper {
                  transform: scale(0.9);
              }
         }
 
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
         .closing {
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--accent-gold);
             margin-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 20px;
+            padding-top: 25px;
             display: inline-block;
         }
         
@@ -266,7 +285,6 @@
             pointer-events: none;
             z-index: 99;
         }
-
     </style>
 </head>
 <body>
@@ -290,21 +308,25 @@
             
             <div class="message-body">
                 <p>
-                    While the New Year arrives bringing new beginnings, its arrival is deeply rooted in the cherished moments and memories of the past. In that tapestry of memories, your contribution was vital.
+                    As the New Year unfolds, bringing with it new hopes and beginnings, I find myself pausing to reflect on the memories that have shaped us. Among the most cherished of these are the days spent in your classroom. The New Year is not just about looking forward; it is also about honoring the people who <span class="text-gold">helped us reach where we are today.</span>
                 </p>
                 <br>
                 <p>
-                    The first semester of university is one of life's most nostalgic and unforgettable chapters. We were fortunate to have you during that pivotal time. Although you are no longer with us in the classroom, the time you dedicated to us is unforgettable. We may not meet as before, but the memories etched in our hearts remain vivid.
+                    The first semester of university is often a time of great transition—a mix of excitement, confusion, and new faces. Yet, you made that transition feel like a <span class="text-blue">journey home</span>. You weren't just teaching a syllabus; you were crafting an experience. You possess that rare magic of turning a boring lecture into a <span class="text-gold">lively conversation</span>, making us laugh while we learned. Your classes were the ones we genuinely looked forward to, and that is a testament to your amazing personality.
                 </p>
                 <br>
                 <p>
-                    I do not know when our paths will cross again, but I miss you dearly this New Year, Ma'am. You have shown how a teacher can build a truly <span class="highlight">friendly and supportive bond</span> with students.
+                    Walking past the classrooms now, there is a palpable silence where your voice used to be. We miss the energy you brought, the patience you showed, and the unique way you made every student feel seen. You taught us that <span class="text-blue">respect isn't demanded; it's earned through kindness</span>—and you earned ours a thousand times over.
+                </p>
+                <br>
+                <p>
+                    Distance may keep us from your classes now, but it cannot erase the gratitude we hold in our hearts. I miss you dearly this New Year, Ma'am. Thank you for setting the standard of what a true mentor should be: <span class="text-gold">a guide, a guardian, and a friend.</span>
                 </p>
             </div>
 
             <div class="closing">
-                You're great Ma'am. Miss you so much.<br>
-                <span style="font-size: 0.8em; opacity: 0.8;">Missing those classroom days.</span>
+                You're great, Ma'am. Miss you so much.<br>
+                <span style="font-size: 0.7em; opacity: 0.8; font-family: 'Lora', serif; font-style: italic;">Always missing those classroom days.</span>
             </div>
         </div>
     </div>
