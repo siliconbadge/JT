@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Special Message</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+            --accent-gold: #ffd700;
+            --bg-dark: #0a0f24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            height: 100svh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-dark);
+            font-family: 'Lora', serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            z-index: -2;
+        }
+
+        .nebula {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 210, 255, 0.1), rgba(58, 123, 213, 0.1), rgba(0, 210, 255, 0.1));
+            animation: drift 60s linear infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes drift {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0%); }
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px white; }
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            position: relative;
+            border-radius: 5px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .envelope::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid rgba(255, 255, 255, 0.1);
+            z-index: 3;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid rgba(255, 255, 255, 0.2);
+            z-index: 4;
+            transform-origin: top;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .envelope.open::after {
+             transform: rotateX(180deg);
+             z-index: 1;
+        }
+        
+        .seal {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ffd700, #d4af37);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #8a6e00;
+            font-family: 'Cinzel', serif;
+            border: 2px solid #b8860b;
+            transition: opacity 0.5s ease;
+        }
+
+        .tap-hint {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+        .letter-container {
+            display: none;
+            position: relative;
+            z-index: 20;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .glass-paper {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 15px;
+            padding: 30px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+            text-align: center;
+            color: #e0e0e0;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-paper.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .recipient {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .salutation {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .message-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify;
+            text-align-last: left;
+        }
+
+        @media (max-width: 480px) {
+             .message-body {
+                 font-size: 0.95rem;
+                 line-height: 1.6;
+             }
+             .glass-paper {
+                 padding: 25px 15px;
+             }
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .closing {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            display: inline-block;
+        }
+        
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="background-overlay"></div>
+    <div class="nebula"></div>
+    <div id="stars-container"></div>
+
+    <div class="envelope-wrapper" id="envelopeOpener" onclick="openEnvelope()">
+        <div class="envelope" id="envelopeBox">
+            <div class="seal">JT</div>
+        </div>
+        <p class="tap-hint">Tap to Open</p>
+    </div>
+
+    <div class="letter-container" id="mainLetter">
+        <div class="glass-paper" id="letterContent">
+            <h2 class="recipient">A Letter to Jeba Tahsin Miss</h2>
+            <span class="salutation">Respected Ma'am,</span>
+            
+            <div class="message-body">
+                <p>
+                    While the New Year arrives bringing new beginnings, its arrival is deeply rooted in the cherished moments and memories of the past. In that tapestry of memories, your contribution was vital.
+                </p>
+                <br>
+                <p>
+                    The first semester of university is one of life's most nostalgic and unforgettable chapters. We were fortunate to have you during that pivotal time. Although you are no longer with us in the classroom, the time you dedicated to us is unforgettable. We may not meet as before, but the memories etched in our hearts remain vivid.
+                </p>
+                <br>
+                <p>
+                    I do not know when our paths will cross again, but I miss you dearly this New Year, Ma'am. You have shown how a teacher can build a truly <span class="highlight">friendly and supportive bond</span> with students.
+                </p>
+            </div>
+
+            <div class="closing">
+                You're great Ma'am. Miss you so much.<br>
+                <span style="font-size: 0.8em; opacity: 0.8;">Missing those classroom days.</span>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const numStars = 200;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const xy = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const size = Math.random() * 2 + 1;
+
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.animationDelay = `${Math.random() * 3}s`;
+
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        function openEnvelope() {
+            const envelopeWrapper = document.getElementById('envelopeOpener');
+            const envelopeBox = document.getElementById('envelopeBox');
+            const letterContainer = document.getElementById('mainLetter');
+            const letterContent = document.getElementById('letterContent');
+            const seal = document.querySelector('.seal');
+
+            seal.style.opacity = '0';
+            envelopeBox.classList.add('open');
+            
+            setTimeout(() => {
+                envelopeWrapper.style.transition = 'all 0.8s ease';
+                envelopeWrapper.style.opacity = '0';
+                envelopeWrapper.style.transform = 'scale(1.5)';
+            }, 600);
+
+            setTimeout(() => {
+                envelopeWrapper.style.display = 'none';
+                fireMagicalEffect();
+                letterContainer.style.display = 'flex';
+                
+                setTimeout(() => {
+                    letterContent.classList.add('show');
+                }, 100);
+
+            }, 1400);
+        }
+
+        function fireMagicalEffect() {
+            var myCanvas = document.getElementById('confetti-canvas');
+            var myConfetti = confetti.create(myCanvas, { resize: true, useWorker: true });
+            const colors = ['#ffffff', '#00d2ff', '#ffd700', '#87ceeb'];
+
+            myConfetti({
+                particleCount: 250,
+                spread: 180,
+                origin: { y: 0.6 },
+                colors: colors,
+                startVelocity: 45,
+                gravity: 0.8,
+                scalar: 0.8,
+                ticks: 300
+            });
+            
+             var end = Date.now() + (3 * 1000);
+             (function frame() {
+                myConfetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0, y: 0.2 },
+                colors: ['#ffffff', '#aeeeee'],
+                gravity: 0.5,
+                drift: 1,
+                scalar: 0.6
+                });
+                myConfetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1, y: 0.2 },
+                colors: ['#ffffff', '#aeeeee'],
+                gravity: 0.5,
+                drift: -1,
+                scalar: 0.6
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
