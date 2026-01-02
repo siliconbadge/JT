@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>A Special Message</title>
+    <title>A Special Message For Jeba Ma'am</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -30,7 +30,6 @@
             position: relative;
         }
 
-        /* ব্যাকগ্রাউন্ড এবং অ্যানিমেশন */
         .background-overlay {
             position: fixed;
             top: 0;
@@ -71,7 +70,6 @@
             50% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px white; }
         }
 
-        /* এনভেলপ স্টাইল */
         .envelope-wrapper {
             position: relative;
             cursor: pointer;
@@ -176,7 +174,6 @@
 
         @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
-        /* চিঠির কন্টেইনার */
         .letter-container {
             display: none;
             position: relative;
@@ -225,7 +222,6 @@
             display: block;
         }
 
-        /* সুন্দর টেক্সট বডি */
         .message-body {
             font-size: 1.1rem;
             line-height: 1.8;
@@ -234,7 +230,6 @@
             text-align-last: left;
         }
 
-        /* হাইলাইট স্টাইল */
         .text-gold {
             color: var(--accent-gold);
             font-weight: 600;
@@ -245,11 +240,6 @@
             color: var(--primary-color);
             font-weight: 600;
             font-style: italic;
-        }
-
-        .text-bold {
-            color: #ffffff;
-            font-weight: 600;
         }
 
         @media (max-width: 480px) {
@@ -308,24 +298,24 @@
             
             <div class="message-body">
                 <p>
-                    As the New Year unfolds, bringing with it new hopes and beginnings, I find myself pausing to reflect on the memories that have shaped us. Among the most cherished of these are the days spent in your classroom. The New Year is not just about looking forward; it is also about honoring the people who <span class="text-gold">helped us reach where we are today.</span>
+                    As the New Year unfolds bringing with it new hopes and beginnings I find myself pausing to reflect on the memories that have shaped us. Among the most cherished of these are the days spent in your classroom. The New Year is not just about looking forward. It is also about honoring the people who <span class="text-gold">helped us reach where we are today.</span>
                 </p>
                 <br>
                 <p>
-                    The first semester of university is often a time of great transition—a mix of excitement, confusion, and new faces. Yet, you made that transition feel like a <span class="text-blue">journey home</span>. You weren't just teaching a syllabus; you were crafting an experience. You possess that rare magic of turning a boring lecture into a <span class="text-gold">lively conversation</span>, making us laugh while we learned. Your classes were the ones we genuinely looked forward to, and that is a testament to your amazing personality.
+                    The first semester of university is often a time of great transition with a mix of excitement confusion and new faces. Yet you made that transition feel like a <span class="text-blue">journey home.</span> You were not just teaching a syllabus. You were crafting an experience. You possess that rare magic of turning a boring lecture into a <span class="text-gold">lively conversation</span> making us laugh while we learned. Your classes were the ones we genuinely looked forward to and that is a testament to your amazing personality.
                 </p>
                 <br>
                 <p>
-                    Walking past the classrooms now, there is a palpable silence where your voice used to be. We miss the energy you brought, the patience you showed, and the unique way you made every student feel seen. You taught us that <span class="text-blue">respect isn't demanded; it's earned through kindness</span>—and you earned ours a thousand times over.
+                    Walking past the classrooms now there is a palpable silence where your voice used to be. We miss the energy you brought the patience you showed and the unique way you made every student feel seen. You taught us that <span class="text-blue">respect is not demanded.</span> It is earned through kindness and you earned ours a thousand times over.
                 </p>
                 <br>
                 <p>
-                    Distance may keep us from your classes now, but it cannot erase the gratitude we hold in our hearts. I miss you dearly this New Year, Ma'am. Thank you for setting the standard of what a true mentor should be: <span class="text-gold">a guide, a guardian, and a friend.</span>
+                    Distance may keep us from your classes now but it cannot erase the gratitude we hold in our hearts. I miss you dearly this New Year Ma'am. Thank you for setting the standard of what a true mentor should be. <span class="text-gold">A guide a guardian and a friend.</span>
                 </p>
             </div>
 
             <div class="closing">
-                You're great, Ma'am. Miss you so much.<br>
+                You are great Ma'am. Miss you so much.<br>
                 <span style="font-size: 0.7em; opacity: 0.8; font-family: 'Lora', serif; font-style: italic;">Always missing those classroom days.</span>
             </div>
         </div>
@@ -343,18 +333,15 @@
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
-                
                 const xy = Math.random() * 100;
                 const duration = Math.random() * 3 + 2;
                 const size = Math.random() * 2 + 1;
-
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 star.style.setProperty('--duration', `${duration}s`);
                 star.style.animationDelay = `${Math.random() * 3}s`;
-
                 starsContainer.appendChild(star);
             }
         }
@@ -384,11 +371,9 @@
                 envelopeWrapper.style.display = 'none';
                 fireMagicalEffect();
                 letterContainer.style.display = 'flex';
-                
                 setTimeout(() => {
                     letterContent.classList.add('show');
                 }, 100);
-
             }, 1400);
         }
 
@@ -396,7 +381,6 @@
             var myCanvas = document.getElementById('confetti-canvas');
             var myConfetti = confetti.create(myCanvas, { resize: true, useWorker: true });
             const colors = ['#ffffff', '#00d2ff', '#ffd700', '#87ceeb'];
-
             myConfetti({
                 particleCount: 250,
                 spread: 180,
@@ -407,7 +391,6 @@
                 scalar: 0.8,
                 ticks: 300
             });
-            
              var end = Date.now() + (3 * 1000);
              (function frame() {
                 myConfetti({
@@ -430,7 +413,6 @@
                 drift: -1,
                 scalar: 0.6
                 });
-
                 if (Date.now() < end) {
                     requestAnimationFrame(frame);
                 }
@@ -439,4 +421,3 @@
     </script>
 </body>
 </html>
-
